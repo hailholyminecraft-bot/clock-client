@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:">
+  <title>Clock Client</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="brand"><img src="../assets/icon.svg" alt="" width="22" height="22"><span>Clock Client</span></div>
+    <div class="drag"></div>
+    <button id="min" class="win" aria-label="Minimize">&#8211;</button>
+    <button id="close" class="win close" aria-label="Close">&#215;</button>
+  </header>
+
+  <div class="shell">
+    <nav class="side" aria-label="Sections">
+      <button class="tab active" data-tab="play">Play</button>
+      <button class="tab" data-tab="mods">Mods</button>
+      <button class="tab" data-tab="settings">Settings</button>
+      <div class="spacer"></div>
+      <div class="account">
+        <div id="acct-name" class="acct-name">Not signed in</div>
+        <button id="acct-btn" class="link">Sign in with Microsoft</button>
+      </div>
+    </nav>
+
+    <main>
+      <!-- PLAY -->
+      <section id="tab-play" class="pane active">
+        <div class="play-grid">
+          <div class="dial-wrap">
+            <div class="dial" aria-label="Live clock">
+              <img src="../assets/dial.svg" alt="" class="dial-face">
+              <div class="hand hour" id="h-hour"></div>
+              <div class="hand minute" id="h-min"></div>
+              <div class="hand second" id="h-sec"></div>
+              <div class="cap"></div>
+            </div>
+            <div class="digital" id="digital">--:--</div>
+          </div>
+
+          <div class="launch">
+            <h1>Ready when you are</h1>
+            <label class="field">
+              <span>Minecraft version</span>
+              <select id="version"></select>
+            </label>
+            <p id="status" class="status" role="status">Pick a version and press Play.</p>
+            <div class="bar-track" aria-hidden="true"><div id="progress" class="bar-fill"></div></div>
+            <button id="play" class="play">Play</button>
+            <details class="log">
+              <summary>Game log</summary>
+              <pre id="log"></pre>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODS -->
+      <section id="tab-mods" class="pane">
+        <h1>Mods</h1>
+        <p class="hint">Turn Clock Client modules on or off. Changes apply the next time you start the game.</p>
+        <div id="mods"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="tab-settings" class="pane">
+        <h1>Settings</h1>
+
+        <div class="row">
+          <div>
+            <h2>Memory</h2>
+            <p class="hint">More memory helps with big modpacks and render distance. Too much can cause lag spikes.</p>
+          </div>
+          <div class="ctl">
+            <input id="ram" type="range" min="2048" step="512" value="4096">
+            <output id="ram-out">4 GB</output>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <h2>FPS boost mods</h2>
+            <p class="hint">Installs and updates Sodium, Lithium, FerriteCore, Entity Culling, ImmediatelyFast and ModernFix.</p>
+          </div>
+          <label class="switch"><input id="perf" type="checkbox"><span></span></label>
+        </div>
+
+        <div class="row">
+          <div>
+            <h2>Java</h2>
+            <p class="hint" id="java-hint">Leave empty to use the Java on your system.</p>
+          </div>
+          <div class="ctl"><input id="java" type="text" placeholder="Path to java"></div>
+        </div>
+
+        <div class="row">
+          <div>
+            <h2>Game folder</h2>
+            <p class="hint">Worlds, mods and logs live here.</p>
+          </div>
+          <div class="ctl"><button id="folder" class="ghost">Open folder</button></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

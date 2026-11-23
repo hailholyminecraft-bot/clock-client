@@ -1,0 +1,29 @@
+{
+  "name": "clock-client-launcher",
+  "version": "1.0.0",
+  "description": "Clock Client launcher",
+  "main": "main.js",
+  "author": "Clock Client",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "minecraft-launcher-core": "^3.18.2",
+    "msmc": "^5.0.4"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.clockclient.launcher",
+    "productName": "Clock Client",
+    "icon": "assets/icon.png",
+    "files": ["main.js", "preload.js", "src/**", "assets/**"],
+    "extraResources": [{ "from": "mods", "to": "mods" }],
+    "win": { "target": "nsis" },
+    "mac": { "target": "dmg" },
+    "linux": { "target": "AppImage" }
+  }
+}
